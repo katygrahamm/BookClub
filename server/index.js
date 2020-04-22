@@ -4,7 +4,23 @@ const app = express();
 const cors = require('cors');
 const axios = require('axios')
 const NYTKey = 'g9RMD5mNaimpkARE0hiazQ1cCM19KiQE'
-
+var mysql = require('mysql');
+var con  = mysql.createConnection({
+  host            : 'localhost',
+  user            : 'NEW_USER',
+  password        : 'NEW_PASSWORD',
+  database        : 'bookclubdb'
+});
+ 
+con.connect(function(err) {
+  if (err) throw err;
+  console.log("Connected!");
+  var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
+  con.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Table created");
+  });
+});
 
 // Gets the NYT's bestseller list for fiction books
 app.get('/nyt-books-fiction', (req, res) => {
