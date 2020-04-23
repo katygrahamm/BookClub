@@ -15,12 +15,23 @@ var con  = mysql.createConnection({
 con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
-  con.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Table created");
-  });
 });
+
+var users = "CREATE TABLE users (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255), firstName CHAR(30), lastName CHAR(30), profile_pic VARCHAR(255), date_created DATETIME)";
+con.query("DROP TABLE users", function (err, result) {
+  if (err) throw err;
+  console.log("Table deleted")
+})
+
+con.query(users, function (err, result) {
+  if (err) throw err;
+  console.log("Tables created");
+})
+
+con.query("DROP TABLE users", function (err, result) {
+  if (err) throw err;
+  console.log("Table deleted")
+})
 
 // Gets the NYT's bestseller list for fiction books
 app.get('/nyt-books-fiction', (req, res) => {
