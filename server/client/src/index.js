@@ -5,7 +5,7 @@ import { render } from "react-dom";
 import React from 'react';
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/index";
-import LandingPage from './components/landingpage'
+import LandingPage from './components/LandingPage'
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
