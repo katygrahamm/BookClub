@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 import { connect } from "react-redux";
 import * as actions from '../actions';
 
@@ -8,21 +9,43 @@ class LandingPage extends Component {
 
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            newUsername: '',
+            newPassword: ''
         }
+
+        this.handleSignUp = this.handleSignUp.bind(this)
     } 
 
-  handleSubmit(event) {
+  handleLogIn(event) {
       event.preventDefault()
       console.log(event)
       console.log(this.state.username, this.state.password)
-      this.props.addUser(this.state.username, this.state.password)
+      this.props.logIn(this.state.username, this.state.password)
+  }
+
+  handleSignUp(event) {
+    event.preventDefault()
+    this.props.signUp(this.state.newUsername, this.state.newPassword)
   }
   
   render() {
     return (
       <div>
-       <form onSubmit={event => this.handleSubmit(event)}>
+       <form onSubmit={event => {this.handleSignUp(event)}}>
+        <div>
+          <label>Username:</label>
+          <input type="text" name="username" onChange= {event => this.setState({newUsername: event.target.value})}/>
+        </div>
+        <div>
+          <label>Password:</label>
+          <input type="password" name="password" onChange= {event => this.setState({newPassword: event.target.value})}/>
+        </div>
+        <div>
+          <button type="submit" value="Log In">Sign Up</button>
+        </div>
+       </form>
+       <form onSubmit={event => this.handleLogIn(event)}>
         <div>
           <label>Username:</label>
           <input type="text" name="username" onChange= {event => this.setState({username: event.target.value})}/>

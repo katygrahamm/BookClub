@@ -18,6 +18,9 @@ var con  = mysql.createConnection({
   password        : 'NEW_PASSWORD',
   database        : 'bookclubdb'
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
  
 con.connect(function(err) {
   if (err) throw err;
@@ -43,15 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use('login', new LocalStrategy ((username, password, done) => {
-  const authenticated = true
-  let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  let image = faker.image.avatar()
-
-  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES (106, '${username}', '${password}', '${date}', '${image}')`
-  con.query(insertQuery, function (err, result) {
-    if (err) throw err;
-    console.log("User has been created");
-  })
+  const authenticated = true0
 
   if (authenticated) {
     return done(null, { myUser: username, myID: 1234 });
@@ -80,7 +75,25 @@ function checkAuthentication(req,res,next){
   }
 }
 
+app.post('/signup', (req,res) => {
+  console.log(req.body)
+  let username = req.body.newUsername
+  let password = req.body.newPassword
+  let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
+  let image = faker.image.avatar()
+
+  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES (202, '${username}', '${password}', '${date}', '${image}')`
+  con.query(insertQuery, function (err, result) {
+    if (err) throw err;
+    res.send(result.insertId);
+  })
+
+
+})
+
 app.post('/login', passport.authenticate('login', {
+  successRedirect: '/posts',
+  failureRedirect: '/'
 }));
 
 app.get("/test", checkAuthentication, (req, res) => {
