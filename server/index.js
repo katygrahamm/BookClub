@@ -46,14 +46,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use('login', new LocalStrategy ((username, password, done) => {
-  const authenticated = true0
 
-  if (authenticated) {
-    return done(null, { myUser: username, myID: 1234 });
-  } else {
-    return done(null, false);
-  }
-
+  var searchUser = `SELECT * FROM users WHERE username='${username}' AND password='${password}'`
+  con.query(searchUser, function (err, result) {
+    if (err) throw err;
+    console.log(result)
+    if (result.length > 0) {
+     return done(null, { myUser: result[0].username, myID: result[0].id });
+    } else {
+     return done(null, false);
+    }
+  })
 }));
 
 passport.serializeUser((user, done) => {
@@ -82,17 +85,18 @@ app.post('/signup', (req,res) => {
   let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
   let image = faker.image.avatar()
 
-  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES (202, '${username}', '${password}', '${date}', '${image}')`
+  let d = new Date();
+  let n = d.getMilliseconds() + username
+  console.log(n)
+
+  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES ('${n}', '${username}', '${password}', '${date}', '${image}')`
   con.query(insertQuery, function (err, result) {
     if (err) throw err;
-    res.send(result.insertId);
   })
-
-
-})
+});
 
 app.post('/login', passport.authenticate('login', {
-  successRedirect: '/posts',
+  successRedirect: '/home',
   failureRedirect: '/'
 }));
 

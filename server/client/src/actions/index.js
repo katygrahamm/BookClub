@@ -7,7 +7,7 @@ export const logIn = (username, password) => dispatch => {
   
     ).then(function (response) {
       console.log('response from addUser', response)
-      dispatch({ type: ADD_USER , payload: 'success'});
+      dispatch({ type: ADD_USER , payload: response.data});
     })
     .catch(function (error) {
       console.log(error);

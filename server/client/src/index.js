@@ -6,6 +6,7 @@ import React from 'react';
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/index";
 import LandingPage from './components/LandingPage'
+import Home from './components/Home'
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
@@ -14,6 +15,7 @@ render(
       <BrowserRouter>
           <Switch>
             <Route exact path="/" component={LandingPage} />
+            <Route exact path="/home" component={Home} />
           </Switch>
       </BrowserRouter>
     </Provider>,
