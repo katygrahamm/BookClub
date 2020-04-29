@@ -82,10 +82,10 @@ app.post('/signup', (req,res) => {
   let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
   let image = faker.image.avatar()
 
-  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES (202, '${username}', '${password}', '${date}', '${image}')`
+  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES (301, '${username}', '${password}', '${date}', '${image}')`
   con.query(insertQuery, function (err, result) {
     if (err) throw err;
-    res.send(result.insertId);
+    res.send(200);
   })
 
 
