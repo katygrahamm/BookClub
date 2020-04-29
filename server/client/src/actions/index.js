@@ -3,11 +3,10 @@ import { ADD_USER } from './types';
 
 export const logIn = (username, password) => dispatch => {
   
-    axios.post(`http://localhost:5000/login?username=${username}&password=${password}`
-  
-    ).then(function (response) {
-      console.log('response from addUser', response)
-      dispatch({ type: ADD_USER , payload: response.data});
+    axios.post(`http://localhost:5000/login?username=${username}&password=${password}`)
+    .then(function (response) {
+      console.log('response from addUser', response.data[0])
+      dispatch({ type: ADD_USER , payload: response.data[0]});
     })
     .catch(function (error) {
       console.log(error);

@@ -95,10 +95,13 @@ app.post('/signup', (req,res) => {
   })
 });
 
-app.post('/login', passport.authenticate('login', {
-  successRedirect: '/home',
-  failureRedirect: '/'
-}));
+app.post('/login', passport.authenticate('login', {failureRedirect: '/'}), (req, res) => {
+  var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
+  con.query(searchUser, function (err, result) {
+    if (err) throw err;
+    res.send(result)
+  })
+});
 
 app.get("/test", checkAuthentication, (req, res) => {
   res.send("Success")

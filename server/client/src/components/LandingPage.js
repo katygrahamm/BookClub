@@ -19,10 +19,10 @@ class LandingPage extends Component {
     } 
 
   handleLogIn(event) {
-      event.preventDefault()
-      console.log(event)
-      console.log(this.state.username, this.state.password)
-      this.props.logIn(this.state.username, this.state.password)
+    event.preventDefault()
+    console.log(event)
+    console.log(this.state.username, this.state.password)
+    this.props.logIn(this.state.username, this.state.password)
   }
 
   handleSignUp(event) {
