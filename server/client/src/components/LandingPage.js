@@ -11,7 +11,8 @@ class LandingPage extends Component {
             username: '',
             password: '',
             newUsername: '',
-            newPassword: ''
+            newPassword: '',
+            groupName: ''
         }
 
         this.handleSignUp = this.handleSignUp.bind(this)
@@ -36,6 +37,14 @@ class LandingPage extends Component {
     console.log("signing up")
     // event.preventDefault()
     // this.props.signUp(this.state.newUsername, this.state.newPassword)
+  }
+
+  handleAddGroup(event) {
+    event.preventDefault()
+    const body = {
+      groupName: this.state.groupName
+    }
+    axios.post("http://localhost:5000/addgroup", body, {withCredentials: true})
   }
   
   render() {
@@ -65,6 +74,15 @@ class LandingPage extends Component {
         </div>
         <div>
           <button type="submit" value="Log In">Log In</button>
+        </div>
+       </form>
+       <form onSubmit={event => this.handleAddGroup(event)}>
+        <div>
+          <label>Group Name:</label>
+          <input type="group-name" name="group-name" onChange= {event => this.setState({groupName: event.target.value})}/>
+        </div>
+        <div>
+          <button type="submit" value="add-group">Add Group</button>
         </div>
        </form>
       </div>

@@ -74,7 +74,8 @@ function checkAuthentication(req,res,next){
       //req.isAuthenticated() will return true if user is logged in
       next();
   } else{
-      res.redirect("/");
+    console.log("Not authenticated")
+    res.redirect("/");
   }
 }
 
@@ -89,13 +90,13 @@ app.post('/signup', (req,res) => {
   let n = d.getMilliseconds() + username
   console.log(n)
 
-  var insertQuery = `INSERT INTO users (id, username, password, date_created, profile_pic) VALUES ('${n}', '${username}', '${password}', '${date}', '${image}')`
+  var insertQuery = `INSERT INTO users (id, username, password, dateCreated, profilePic) VALUES ('${n}', '${username}', '${password}', '${date}', '${image}')`
   con.query(insertQuery, function (err, result) {
     if (err) throw err;
   })
 });
 
-app.post('/login', passport.authenticate('login', {failureRedirect: '/'}), (req, res) => {
+app.post('/login', passport.authenticate('login', {successRedirect: '/',failureRedirect: '/'}), (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
   con.query(searchUser, function (err, result) {
     if (err) throw err;
@@ -147,6 +148,27 @@ app.get('/googlebooks', (req, res) => {
     console.log(error);
     })
 });
+
+app.post("/addgroup", checkAuthentication, (req, res) => {
+  var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
+  con.query(searchUser, function (err, user) {
+    if (err) throw err;
+    const groupId = (new Date()).getTime().toString(36)
+    console.log(groupId)
+
+    var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook) VALUES ('${groupId}', '${red.body.groupName}', '', '')`
+
+    con.query(insertGroup, function(err, result) {
+      if (err) throw err
+    })
+
+    var insertGroupUser = `INSERT INTO groupUsers(groupId, userId, role) VALUES ('${groupId}', '${user.id}', 'admin.')`
+
+    con.query(insertGroupUser, function(err, result) {
+      if (err) throw err
+    })
+  })
+})
 
 
 // Server Setup
