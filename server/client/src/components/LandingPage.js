@@ -3,6 +3,8 @@ import axios from 'axios';
 import { connect } from "react-redux";
 import * as actions from '../actions';
 
+axios.defaults.withCredentials = true
+
 class LandingPage extends Component {
     constructor(props) {
         super(props)

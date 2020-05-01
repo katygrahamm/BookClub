@@ -60,7 +60,8 @@ var groups = "CREATE TABLE groups (\
   id VARCHAR(255) PRIMARY KEY, \
   name VARCHAR(255), \
   currentBook VARCHAR(255), \
-  nextBook VARCHAR(255))"
+  nextBook VARCHAR(255), \
+  open BOOLEAN)"
 
 con.query(groups, function(err, results) {
   if (err) throw err

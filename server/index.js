@@ -96,7 +96,7 @@ app.post('/signup', (req,res) => {
   })
 });
 
-app.post('/login', passport.authenticate('login', {successRedirect: '/',failureRedirect: '/'}), (req, res) => {
+app.post('/login', passport.authenticate('login', {failureRedirect: '/'}), (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
   con.query(searchUser, function (err, result) {
     if (err) throw err;
@@ -156,7 +156,7 @@ app.post("/addgroup", checkAuthentication, (req, res) => {
     const groupId = (new Date()).getTime().toString(36)
     console.log(groupId)
 
-    var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook) VALUES ('${groupId}', '${red.body.groupName}', '', '')`
+    var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook, open) VALUES ('${groupId}', '${req.body.groupName}', '', '', TRUE)`
 
     con.query(insertGroup, function(err, result) {
       if (err) throw err
@@ -169,6 +169,72 @@ app.post("/addgroup", checkAuthentication, (req, res) => {
     })
   })
 })
+
+app.post("/addbook/:shelfid", (req, res) => {
+  var shelfid = req.params.shelfid
+
+  var title = req.body.title
+  var author = req.body.author
+  var image = req.body.image
+  var description = req.body.description
+  var isbn10 = req.body.isbn10
+  var publisher = req.body.publisher
+  var publishDate = req.body.publishDate
+  var id = 'book' + (new Date()).getTime().toString(36)
+
+  var insertBook = `INSERT INTO books (id, title, author, image, description, isbn10, publisher, publishDate) VALUES ('${id}', '${title}', '${author}', '${image}', '${description}', '${isbn10}', '${publisher}', '${publishDate}')`
+  
+  con.query(insertBook, function (err, result) {
+    if (err) throw err;
+  })
+
+  var insertShelfBook = `INSERT INTO shelfBooks (shelfId, bookId) VALUES ('${shelfid}', '${id}')`
+  con.query(insertShelfBook, function (err, result) {
+    if (err) throw err;
+    res.send(200)
+  })
+}) 
+
+app.post("/createshelf/:entityid/:name", (req, res) => {
+
+  var id = 'shelf' + (new Date()).getTime().toString(36)
+  var shelfName = req.params.name
+  var entityid = req.params.entityid
+
+  var insertShelf = `INSERT INTO shelves (id, entityId, name) VALUES ('${id}', '${entityid}', '${shelfName}')`
+  con.query(insertShelf, function (err, result) {
+    if (err) throw err;
+    res.send(200)
+  })
+})
+
+app.get("/searchusers", (req, res) => { 
+
+  var query = req.query.username
+
+  var searchUser = `SELECT * FROM users WHERE username LIKE '%${query}%'`
+  con.query(searchUser, function (err, results) {
+    if (err) throw err;
+    results.forEach(function(result) {
+      delete result.password
+    })
+    res.send(results)
+  })
+})
+
+app.get("/searchgroups", (req, res) => { 
+
+  var query = req.query.group
+
+  var searchGroups = `SELECT * FROM groups WHERE name LIKE '%${query}%'`
+  con.query(searchGroups, function (err, results) {
+    if (err) throw err;
+    res.send(results)
+  })
+})
+
+
+
 
 
 // Server Setup
