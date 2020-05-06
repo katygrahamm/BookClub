@@ -87,7 +87,7 @@ app.post('/sign-up', (req,res) => {
   let image = faker.image.avatar()
 
   let d = new Date();
-  let n = d.getMilliseconds() + username
+  let n = 'user' + (new Date()).getTime().toString(36)
   console.log(n)
 
   var insertQuery = `INSERT INTO users (id, username, password, dateCreated, profilePic) VALUES ('${n}', '${username}', '${password}', '${date}', '${image}')`
@@ -153,7 +153,7 @@ app.post("/add-group", checkAuthentication, (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
   con.query(searchUser, function (err, user) {
     if (err) throw err;
-    const groupId = (new Date()).getTime().toString(36)
+    const groupId = 'group' + (new Date()).getTime().toString(36)
     console.log(groupId)
 
     var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook, open) VALUES ('${groupId}', '${req.body.groupName}', '', '', TRUE)`
