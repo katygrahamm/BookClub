@@ -21,7 +21,7 @@ export const signUp = (newUsername, newPassword) => dispatch => {
 
   console.log(body)
 
-  axios.post(`http://localhost:5000/signup`, body)
+  axios.post(`http://localhost:5000/sign-up`, body)
   .then(function (response) {
     console.log('response from addUser', response)
     dispatch({ type: ADD_USER , payload: response.data });

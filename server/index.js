@@ -79,7 +79,7 @@ function checkAuthentication(req,res,next){
   }
 }
 
-app.post('/signup', (req,res) => {
+app.post('/sign-up', (req,res) => {
   console.log(req.body)
   let username = req.body.newUsername
   let password = req.body.newPassword
@@ -135,7 +135,7 @@ app.get('/nyt-books-list/:genre', (req, res) => {
 });
 
 // Gets the books from Google Books API search
-app.get('/googlebooks', (req, res) => {
+app.get('/google-books', (req, res) => {
   const query = req.query.q
   const page = req.query.page
 
@@ -149,7 +149,7 @@ app.get('/googlebooks', (req, res) => {
     })
 });
 
-app.post("/addgroup", checkAuthentication, (req, res) => {
+app.post("/add-group", checkAuthentication, (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
   con.query(searchUser, function (err, user) {
     if (err) throw err;
@@ -170,8 +170,8 @@ app.post("/addgroup", checkAuthentication, (req, res) => {
   })
 })
 
-app.post("/addbook/:shelfid", (req, res) => {
-  var shelfid = req.params.shelfid
+app.post("/add-book/:shelfId", (req, res) => {
+  var shelfid = req.params.shelfId
 
   var title = req.body.title
   var author = req.body.author
@@ -195,11 +195,11 @@ app.post("/addbook/:shelfid", (req, res) => {
   })
 }) 
 
-app.post("/createshelf/:entityid/:name", (req, res) => {
+app.post("/create-shelf/:entityId/:name", (req, res) => {
 
   var id = 'shelf' + (new Date()).getTime().toString(36)
   var shelfName = req.params.name
-  var entityid = req.params.entityid
+  var entityid = req.params.entityId
 
   var insertShelf = `INSERT INTO shelves (id, entityId, name) VALUES ('${id}', '${entityid}', '${shelfName}')`
   con.query(insertShelf, function (err, result) {
@@ -208,7 +208,7 @@ app.post("/createshelf/:entityid/:name", (req, res) => {
   })
 })
 
-app.get("/searchusers", (req, res) => { 
+app.get("/search-users", (req, res) => { 
 
   var query = req.query.username
 
@@ -222,7 +222,7 @@ app.get("/searchusers", (req, res) => {
   })
 })
 
-app.get("/searchgroups", (req, res) => { 
+app.get("/search-groups", (req, res) => { 
 
   var query = req.query.group
 
@@ -232,10 +232,6 @@ app.get("/searchgroups", (req, res) => {
     res.send(results)
   })
 })
-
-
-
-
 
 // Server Setup
 const port = 5000;

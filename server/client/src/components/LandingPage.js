@@ -35,7 +35,7 @@ class LandingPage extends Component {
       "newPassword": this.state.newPassword
     }
 
-    axios.post(`http://localhost:5000/signup`, body)
+    axios.post(`http://localhost:5000/sign-up`, body)
     console.log("signing up")
     // event.preventDefault()
     // this.props.signUp(this.state.newUsername, this.state.newPassword)
