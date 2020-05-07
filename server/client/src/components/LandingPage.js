@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { connect } from "react-redux";
+import BookCarousel from './BookCarousel.js'
 import * as actions from '../actions';
 
 axios.defaults.withCredentials = true
@@ -52,6 +53,7 @@ class LandingPage extends Component {
   render() {
     return (
       <div>
+      <BookCarousel />
        <form onSubmit={event => {this.handleSignUp(event)}}>
         <div>
           <label>Username:</label>

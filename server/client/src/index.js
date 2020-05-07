@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import rootReducer from "./reducers/index";
 import LandingPage from './components/LandingPage'
 import Home from './components/Home'
+import 'bootstrap/dist/css/bootstrap.min.css'; 
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
