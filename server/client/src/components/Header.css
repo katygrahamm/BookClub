@@ -1,0 +1,18 @@
+.header {
+    text-align: center;
+    background-color: burlywood;
+    color: black;
+    height: 18vh;
+}
+
+.logo {
+    padding: 10px;
+}
+
+.nav-bar {
+    margin: 3px;
+}
+
+.search-input {
+    width: 50%;
+}
