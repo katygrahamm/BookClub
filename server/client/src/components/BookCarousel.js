@@ -14,7 +14,7 @@ class BookCarousel extends Component {
         this.props.getCarouselBooks()
     }
 
-    sliders() {
+    render () {
       if(this.props.books === undefined) {
         return (
           <div>
@@ -22,33 +22,33 @@ class BookCarousel extends Component {
           </div> 
         )
       } else {
-      return this.props.books.map(book => {
-          return (
-              <div key={book.rank}>
-                  <img alt="image" src={book.book_image} />
-              </div>
-          )
-        });
-      }
-    }
-
-    render () {
           const settings = {
             infinite: true,
-            speed: 500,
-            slidesToShow: 3,
-            slidesToScroll: 3
+            slidesToShow: 4,
+            autoplay: true,
+            slidesToScroll: 1,
+            speed: 2000,
+            arrows: false,
+            autoplaySpeed: 2000,
+            cssEase: "linear"
           }
 
           return (      
-            <div >
-                <Slider {...settings}>
-                    {this.sliders()}
+            <div className="background">
+                <Slider {...settings} className="carousel-background">
+                {
+                this.props.books.map(book => (
+                      <div key={book.rank}>
+                         <img className="book-image" alt="image" src={book.book_image} />
+                      </div>
+                  ))
+                }
                 </Slider>
             </div>
       )
     }
   }
+}
 
   function mapStateToProps(state) {
     return ({

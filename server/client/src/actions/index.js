@@ -33,7 +33,7 @@ export const signUp = (newUsername, newPassword) => dispatch => {
 }
 
 export const getCarouselBooks = () => dispatch => {
-  let genre = 'mass-market-paperback'
+  let genre = 'hardcover-fiction'
   axios.get(`http://localhost:5000/nyt-books-list/${genre}`)
   .then(function (response) {
     console.log('response from getCarouselBooks', response)

@@ -8,6 +8,9 @@ import rootReducer from "./reducers/index";
 import LandingPage from './components/LandingPage'
 import Home from './components/Home'
 import 'bootstrap/dist/css/bootstrap.min.css'; 
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import './index.css'
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
