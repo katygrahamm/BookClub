@@ -1,18 +1,35 @@
 .header {
-    text-align: center;
     background-color: burlywood;
     color: black;
-    height: 18vh;
 }
 
 .logo {
-    padding: 10px;
+    padding-left: 50px;
+    margin-top: 5px;
+}
+
+.name {
+    margin-left: 10px;
 }
 
 .nav-bar {
-    margin: 3px;
+    margin-bottom: 10px;
+}
+
+.search-input, .search-dropdown {
+    height: 25px;
 }
 
 .search-input {
-    width: 50%;
+    width:50%;
+}
+
+.nav-bar-link {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.link-text {
+    text-align: center;
+    align-self: flex-end;
 }
