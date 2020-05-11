@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_USER, GET_CAROUSELBOOKS, ADD_GROUp } from './types';
+import { ADD_USER, GET_CAROUSELBOOKS, ADD_GROUP } from './types';
 
 export const logIn = (username, password) => dispatch => {
   
