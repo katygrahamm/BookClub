@@ -4,16 +4,7 @@
 }
 
 .logo {
-    padding-left: 50px;
-    margin-top: 5px;
-}
-
-.name {
-    margin-left: 10px;
-}
-
-.nav-bar {
-    margin-bottom: 10px;
+    text-align: center;
 }
 
 .search-input, .search-dropdown {
@@ -25,8 +16,13 @@
 }
 
 .nav-bar-link {
+    text-align: center;
     display: flex;
     margin-bottom: 5px;
+}
+
+.link {
+    text-align: center;
 }
 
 .link-text {

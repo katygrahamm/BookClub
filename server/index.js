@@ -149,7 +149,7 @@ app.get('/google-books', (req, res) => {
     })
 });
 
-app.post("/add-group", checkAuthentication, (req, res) => {
+app.post("/add-group", (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
   con.query(searchUser, function (err, user) {
     if (err) throw err;
