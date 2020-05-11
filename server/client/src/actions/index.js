@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_USER } from './types';
+import { ADD_USER, GET_CAROUSELBOOKS } from './types';
 
 export const logIn = (username, password) => dispatch => {
   
@@ -30,4 +30,16 @@ export const signUp = (newUsername, newPassword) => dispatch => {
     console.log(error);
   });
 
+}
+
+export const getCarouselBooks = () => dispatch => {
+  let genre = 'hardcover-fiction'
+  axios.get(`http://localhost:5000/nyt-books-list/${genre}`)
+  .then(function (response) {
+    console.log('response from getCarouselBooks', response)
+    dispatch({ type: GET_CAROUSELBOOKS , payload: response.data });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }

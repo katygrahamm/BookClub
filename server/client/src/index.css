@@ -11,4 +11,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.book-image {
+  height: 350px;
+  width: "auto"
+}
+
+.carousel-background {
+  padding: 5%;
+  background-color: #383838 ;
+}
+
+.landing-page {
+  background-color: #383838;
+  min-height: 400px;
+}
+
+.background {
+  background-color: #383838;
+}
 
