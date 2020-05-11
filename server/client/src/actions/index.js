@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ADD_USER } from './types';
+import { ADD_GROUP } from "./types"
 
 export const logIn = (username, password) => dispatch => {
   
@@ -30,4 +31,19 @@ export const signUp = (newUsername, newPassword) => dispatch => {
     console.log(error);
   });
 
+}
+
+export const addGroup = (groupName) => dispatch => {
+  const body = {
+    'groupName': groupName,
+  }
+
+  axios.post("http://localhost:5000/add-group", body, { withCredentials: true })
+  .then(function (response) {
+    console.log('response from addGroup', response)
+    dispatch({ type: ADD_GROUP , payload: response.data });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 }

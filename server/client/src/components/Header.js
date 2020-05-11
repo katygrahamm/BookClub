@@ -10,10 +10,8 @@ class Header extends Component{
          <div className="header">
             <Row>
                 <Col sm={4}></Col>
-                <Col sm={4}>
-                    <div className="logo">
+                <Col sm={4} className="logo">
                         <i class="fas fa-book-open fa-5x"></i>
-                    </div>
                 </Col>
                 <Col sm={4}></Col>
             </Row>
@@ -23,7 +21,7 @@ class Header extends Component{
                     <Row className="nav-bar">              
                         <Col className="nav-bar-link" sm={3}><span className="link-text"><Link to={'/home'} style={{color:'black'}}>Home</Link></span></Col>
                         <Col className="nav-bar-link" sm={3}><span className="link-text"><Link to={'/shelves'} style={{color:'black'}}>MyShelves</Link></span></Col>
-                        <Col className="nav-bar-link" sm={3}><span className="link-text"><Link to={'/groups'} style={{color:'black'}}>MyGroups</Link></span></Col>
+                        <Col className="nav-bar-link" sm={3}><span className="link-text"><Link to={'/my-groups'} style={{color:'black'}}>MyGroups</Link></span></Col>
                         <Col className="nav-bar-link" sm={3}>
                             <span className="search">
                                 <form className="input-group search-bar">
