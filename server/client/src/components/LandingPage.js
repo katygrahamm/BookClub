@@ -6,6 +6,7 @@ import Card from 'react-bootstrap/Card'
 import { Button, Row, Col } from 'react-bootstrap'
 
 import * as actions from '../actions';
+import Header from "./Header.js"
 
 axios.defaults.withCredentials = true
 

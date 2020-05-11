@@ -1,0 +1,35 @@
+.header {
+    background-color: burlywood;
+    color: black;
+}
+
+.logo {
+    padding-left: 50px;
+    margin-top: 5px;
+}
+
+.name {
+    margin-left: 10px;
+}
+
+.nav-bar {
+    margin-bottom: 10px;
+}
+
+.search-input, .search-dropdown {
+    height: 25px;
+}
+
+.search-input {
+    width:50%;
+}
+
+.nav-bar-link {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.link-text {
+    text-align: center;
+    align-self: flex-end;
+}
