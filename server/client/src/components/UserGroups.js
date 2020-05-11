@@ -10,14 +10,15 @@ class UserGroups extends Component {
         super(props)
 
         this.state = {
-            newGroupName: ""
+            newGroupName: "",
+            groupPrivate: false
         }
 
         this.addNewGroup = this.addNewGroup.bind(this)
     }
 
     addNewGroup() {
-        this.props.addGroup(this.state.newGroupName)
+        this.props.addGroup(this.state.newGroupName, this.state.groupPrivate)
     }
 
     render() {
@@ -35,6 +36,13 @@ class UserGroups extends Component {
                                 <Card>
                                     <format className="new-group-form">
                                         <input placeHolder="Group Name" onChange={event => {this.setState({ newGroupName: event.target.value})}}></input>
+                                        <br></br>
+                                        <span className="private-toggle">Private</span>
+                                        <label class="switch" onChange={event => {this.setState({ groupPrivate: !this.state.groupPrivate})}}>
+                                            <input type="checkbox"></input>
+                                            <span class="slider round"></span>
+                                        </label>
+                                        <br></br>
                                         <Button variant="secondary" className="new-group-submit" onClick={event => {this.addNewGroup()}}>Submit</Button>
                                     </format>
                                 </Card>

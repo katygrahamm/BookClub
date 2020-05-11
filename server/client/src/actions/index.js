@@ -32,9 +32,10 @@ export const signUp = (newUsername, newPassword) => dispatch => {
 
 }
 
-export const addGroup = (groupName) => dispatch => {
+export const addGroup = (groupName, groupPrivate) => dispatch => {
   const body = {
     'groupName': groupName,
+    'groupPrivate': groupPrivate
   }
 
   axios.post("http://localhost:5000/add-group", body, { withCredentials: true })
