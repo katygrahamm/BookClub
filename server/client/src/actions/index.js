@@ -1,6 +1,5 @@
 import axios from "axios";
-import { ADD_USER } from './types';
-import { ADD_GROUP } from "./types"
+import { ADD_USER, GET_CAROUSELBOOKS, ADD_GROUp } from './types';
 
 export const logIn = (username, password) => dispatch => {
   
@@ -42,6 +41,18 @@ export const addGroup = (groupName) => dispatch => {
   .then(function (response) {
     console.log('response from addGroup', response)
     dispatch({ type: ADD_GROUP , payload: response.data });
+      })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+export const getCarouselBooks = () => dispatch => {
+  let genre = 'hardcover-fiction'
+  axios.get(`http://localhost:5000/nyt-books-list/${genre}`)
+  .then(function (response) {
+    console.log('response from getCarouselBooks', response)
+    dispatch({ type: GET_CAROUSELBOOKS , payload: response.data });
   })
   .catch(function (error) {
     console.log(error);
