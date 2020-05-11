@@ -151,12 +151,19 @@ app.get('/google-books', (req, res) => {
 
 app.post("/add-group", (req, res) => {
   var searchUser = `SELECT * FROM users WHERE username='${req.user.myUser}'`
+
+  let private = ""
+  if (req.body.groupPrivate) {
+    private = "FALSE"
+  } else {
+    private = "TRUE"
+  }
   con.query(searchUser, function (err, user) {
     if (err) throw err;
     const groupId = 'group' + (new Date()).getTime().toString(36)
     console.log(groupId)
 
-    var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook, open) VALUES ('${groupId}', '${req.body.groupName}', '', '', TRUE)`
+    var insertGroup = `INSERT INTO groups (id, name, currentBook, nextBook, open) VALUES ('${groupId}', '${req.body.groupName}', '', '', ${private})`
 
     con.query(insertGroup, function(err, result) {
       if (err) throw err
