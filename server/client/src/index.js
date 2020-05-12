@@ -21,8 +21,8 @@ render(
       <BrowserRouter>
           <Switch>
             <Route exact path="/" component={LandingPage} />
-            <Route exact path="/home" component={Home} />
             <Route exact path="/sign-up" component={SignUp} />
+            <Route exact path="/home" component={Home} />
           </Switch>
       </BrowserRouter>
     </Provider>,

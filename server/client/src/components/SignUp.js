@@ -43,6 +43,7 @@ class SignUp extends Component {
     console.log("signing up")
     // event.preventDefault()
     // this.props.signUp(this.state.newUsername, this.state.newPassword)
+    this.props.history.push('/');
   }
   
   render() {
@@ -78,7 +79,7 @@ class SignUp extends Component {
                     <input className="width" type="password" name="password" onChange={event => this.setState({newPassword: event.target.value})}/>
                   </div>
                   <div className="text-center submit-btn"> 
-                    <a href='/'><Button variant="dark" type="submit" value="Log In">Sign Up</Button></a>
+                    <Button variant="dark" type="submit" value="Sign Up">Sign Up</Button>
                   </div>
                 </form>
               </Card.Body>

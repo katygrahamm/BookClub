@@ -14,14 +14,10 @@ class LandingPage extends Component {
         super(props)
 
         this.state = {
-            username: '',
-            password: '',
             newUsername: '',
             newPassword: '',
-            groupName: ''
         }
 
-        this.handleSignUp = this.handleSignUp.bind(this)
         this.handleLogIn = this.handleLogIn.bind(this)
     } 
 
@@ -55,7 +51,7 @@ class LandingPage extends Component {
                     <Button variant="dark" type="submit" value="Log In">Login</Button>
                   </div>
                 </form>
-                <p className="text-center">If you don't already have an account sign up <a href="/">here</a></p>
+                <p className="text-center">If you don't already have an account sign up <a href="/sign-up">here</a></p>
               </Card.Body>
             </Card>
           </Col>
