@@ -83,14 +83,16 @@ app.post('/sign-up', (req,res) => {
   console.log(req.body)
   let username = req.body.newUsername
   let password = req.body.newPassword
+  let firstName = req.body.firstName
+  let lastName = req.body.lastName
   let date = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  let image = faker.image.avatar()
+  let image = req.body.profilePic
 
   let d = new Date();
   let n = 'user' + (new Date()).getTime().toString(36)
   console.log(n)
 
-  var insertQuery = `INSERT INTO users (id, username, password, dateCreated, profilePic) VALUES ('${n}', '${username}', '${password}', '${date}', '${image}')`
+  var insertQuery = `INSERT INTO users (id, firstName, lastName, username, password, dateCreated, profilePic) VALUES ('${n}', '${firstName}', '${lastName}','${username}', '${password}', '${date}', '${image}')`
   con.query(insertQuery, function (err, result) {
     if (err) throw err;
   })

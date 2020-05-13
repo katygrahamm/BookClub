@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import BookCarousel from './BookCarousel.js'
 import Card from 'react-bootstrap/Card'
 import { Button, Row, Col } from 'react-bootstrap'
-
 import * as actions from '../actions';
 import Header from "./Header.js"
 
@@ -15,14 +14,10 @@ class LandingPage extends Component {
         super(props)
 
         this.state = {
-            username: '',
-            password: '',
             newUsername: '',
             newPassword: '',
-            groupName: ''
         }
 
-        this.handleSignUp = this.handleSignUp.bind(this)
         this.handleLogIn = this.handleLogIn.bind(this)
     } 
 
@@ -31,55 +26,34 @@ class LandingPage extends Component {
     console.log(event)
     console.log(this.state.username, this.state.password)
     this.props.logIn(this.state.username, this.state.password)
-  }
 
-  handleSignUp(event) {
-    event.preventDefault()
-    const body = {
-      "newUsername": this.state.newUsername,
-      "newPassword": this.state.newPassword
-    }
-
-    axios.post(`http://localhost:5000/sign-up`, body)
-    console.log("signing up")
-    // event.preventDefault()
-    // this.props.signUp(this.state.newUsername, this.state.newPassword)
-  }
-
-  handleAddGroup(event) {
-    event.preventDefault()
-    const body = {
-      groupName: this.state.groupName
-    }
-    axios.post("http://localhost:5000/addgroup", body, {withCredentials: true})
+    this.props.history.push('/home');
   }
   
   render() {
     return (
-      <div className="background">
+      <div>
       <BookCarousel />
         <Row className="landing-page">
           <Col></Col>
           <Col xs={3}>
             <Card style={{ width: '18rem' }} className="lp-card">
               <Card.Body>
-                <h2 className="text-center">Welcome to BookClub</h2>
-                <form onSubmit={event => this.handleLogIn(event)}>
+                <h2 className="text-center welcome">Welcome to <strong>bookclub</strong></h2>
+                <form className="sign-in-form" onSubmit={event => this.handleLogIn(event)}>
                   <div>
                     <label>Username:</label>
                     <input type="text" name="username" onChange= {event => this.setState({username: event.target.value})}/>
                   </div>
-                  <div>
+                  <div className="password">
                     <label>Password:</label>
                     <input type="password" name="password" onChange= {event => this.setState({password: event.target.value})}/>
                   </div>
-                  <br />
-                  <div>
+                  <div className="text-center submit-btn"> 
                     <Button variant="dark" type="submit" value="Log In">Login</Button>
                   </div>
                 </form>
-                <br />
-                <p className="text-center">If you don't have an account sign up <a href="/">here</a></p>
+                <p className="text-center">If you don't already have an account sign up <a href="/sign-up">here</a></p>
               </Card.Body>
             </Card>
           </Col>

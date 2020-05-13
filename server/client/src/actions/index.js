@@ -13,8 +13,11 @@ export const logIn = (username, password) => dispatch => {
     });
 };
 
-export const signUp = (newUsername, newPassword) => dispatch => {
+export const signUp = (newUsername, newPassword, firstName, lastName, profilePic) => dispatch => {
   const body = {
+    "firstName": firstName, 
+    "lastName": lastName, 
+    "profilePic": profilePic, 
     "newUsername": newUsername,
     "newPassword": newPassword
   }
