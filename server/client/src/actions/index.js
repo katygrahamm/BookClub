@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_USER, GET_CAROUSELBOOKS } from './types';
+import { ADD_USER, GET_CAROUSELBOOKS, ADD_GROUP } from './types';
 
 export const logIn = (username, password) => dispatch => {
   
@@ -33,6 +33,22 @@ export const signUp = (newUsername, newPassword, firstName, lastName, profilePic
     console.log(error);
   });
 
+}
+
+export const addGroup = (groupName, groupPrivate) => dispatch => {
+  const body = {
+    'groupName': groupName,
+    'groupPrivate': groupPrivate
+  }
+
+  axios.post("http://localhost:5000/add-group", body, { withCredentials: true })
+  .then(function (response) {
+    console.log('response from addGroup', response)
+    dispatch({ type: ADD_GROUP , payload: response.data });
+      })
+  .catch(function (error) {
+    console.log(error);
+  });
 }
 
 export const getCarouselBooks = () => dispatch => {

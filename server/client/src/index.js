@@ -8,11 +8,12 @@ import rootReducer from "./reducers/index";
 import LandingPage from './components/LandingPage'
 import Home from './components/Home'
 import SignUp from './components/SignUp'
+import GroupPage from './components/groups/GroupPage'
+import UserGroups from "./components/UserGroups"
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import './index.css'
-
 
 const store = createStore(rootReducer, {}, applyMiddleware(thunk));
 
@@ -23,6 +24,8 @@ render(
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/sign-up" component={SignUp} />
             <Route exact path="/home" component={Home} />
+            <Route exact path="/group" component={GroupPage} />
+            <Route exact path="/my-groups" component={UserGroups} />
           </Switch>
       </BrowserRouter>
     </Provider>,
