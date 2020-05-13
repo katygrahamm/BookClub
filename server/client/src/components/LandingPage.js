@@ -26,6 +26,8 @@ class LandingPage extends Component {
     console.log(event)
     console.log(this.state.username, this.state.password)
     this.props.logIn(this.state.username, this.state.password)
+
+    this.props.history.push('/home');
   }
   
   render() {
