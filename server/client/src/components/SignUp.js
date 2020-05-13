@@ -65,9 +65,9 @@ class SignUp extends Component {
                     <input className="width" type="text" name="lastname" onChange={event => this.setState({lastName: event.target.value})}/>
                   </div>
                   <div>
-                    <label>Profile Picture: </label>
+                    {/* <label>Profile Picture: </label>
                     <input type="file" onChange={this.handleChange}/>
-                    <img className="profile-pic-preview text-center" src={this.state.profilePic}/>
+                    <img className="profile-pic-preview text-center" src={this.state.profilePic}/> */}
                     {/* <input type="file" name="profilepic" onChange={event => this.setState({profilePic: URL.createObjectURL(event.target.files[0])})}/> */}
                   </div>
                   <div>
